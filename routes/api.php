@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\BoardController;
+use App\Http\Controllers\Api\TagsController;
+use App\Http\Controllers\Api\SS\ApiActivistsController;
 
 
 /*
@@ -39,5 +41,13 @@ Route::put('/board/{id}/tasks',[BoardController::class,'addTasksToBoard'])->midd
 Route::put('/board/{id}/access',[BoardController::class,'giveAccessToUser'])->middleware('auth:sanctum');
 Route::delete('/board/{id}/access',[BoardController::class,'takeAccessFromUser'])->middleware('auth:sanctum');
 Route::get('/board/{id}/access',[BoardController::class,'getAccessForBoard'])->middleware('auth:sanctum');
+Route::post('test',[ApiAuthController::class,'test'])->middleware('auth:sanctum');
 
 
+Route::get('activist',[ApiActivistsController::class,'getAll']);
+Route::get('activist/{id}',[ApiActivistsController::class,'getActivist']);
+Route::post('activist/{id}',[ApiActivistsController::class,'editActivist']);
+Route::delete('activist/{id}',[ApiActivistsController::class,'deleteActivist']);
+Route::put('activist',[ApiActivistsController::class,'createActivist']);
+
+Route::get('/tags',[TagsController::class, 'getTop']);

@@ -16,8 +16,8 @@ class ApiAuthController extends Controller
 {
     public function index(Request $request){
 
-        $credentials = $request->only('username', 'password');
-        if ($user = User::where('username', $request->username)
+        $credentials = $request->only('email', 'password');
+        if ($user = User::where('email', $request->email)
             ->where('password', $request->password)
             ->first()
             ) {
@@ -47,7 +47,8 @@ class ApiAuthController extends Controller
 
         $data = $request->all();
         $user = User::create([
-            'username' => $data['username'],
+            'name' => $data['name'],
+            'email' => $data['email'],
             'password' => $data['password'],
         ]);
 
@@ -65,5 +66,11 @@ class ApiAuthController extends Controller
             ],
 
         ]);
+    }
+
+    public function test(Request $request){
+//        print_r($request);
+        return $request;
+
     }
 }

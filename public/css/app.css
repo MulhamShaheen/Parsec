@@ -1,7 +1,7 @@
 body{
     background-color: #2D384D;
     overflow: auto;
-    color: #718096;
+    color: #faf4f4;
     margin: 0;
     overflow: no-content;
 }
@@ -15,11 +15,30 @@ body{
     padding: 1em;
     border-radius: 7px;
 }
-footer{
+.footer{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-content: center;
     bottom: 0;
+    background: #181925;
     width: 100%;
+}
+.footer-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    font-size: 20px;
+    gap: 40px;
+}
+.footer-about{
+    width:600px;
+    overflow: no-display;
+}
+.footer-contact{
+    width: 100px;
+
 }
 .admin-panel {
     display: flex;
@@ -143,6 +162,15 @@ footer{
     border-radius: 10px;
     background: #1a202c;
 }
+.profile-content>a{
+    text-decoration: none;
+    color:#a0aec0 ;
+    opacity: 80%;
+}
+.profile-about{
+    color: #a0aec0;
+}
+
 .prof-picture-pen{
     position: relative;
     left: 75%;
@@ -189,13 +217,28 @@ footer{
     text-decoration: none;
 
 }
-.add-tasks{
-    border-radius: 10px;
-    background: #1a202c;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+.resume-create-input{
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 36px;
+    /*font-weight: bold;*/
+    color: #faf4f4;
+}
+
+.btn-redirect{
+    margin: 15px;
+    background: cornflowerblue;
+    border-style: none;
+    border-radius: 7px;
+    padding: 7px;
+
+    color: #1E2633;
+}
+.btn-redirect>a{
+    text-decoration: none;
+    color: #1E2633;
+    font-weight: bold;
 }
 /*.container{*/
 /*    margin: 10px;*/

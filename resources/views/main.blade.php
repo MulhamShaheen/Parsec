@@ -27,34 +27,20 @@
 @include('header')
 
 <div class="main-body">
-    <div class="tasks">
-        <table class="table" style="color: #a0aec0" >
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            @dd(Auth::user()->tokens[0])
-            @foreach(Auth::user()->tasks as $task)
-                <tr>
-                    <th scope="row">{{$task->id}}</th>
-                    <td>{{$task->title}}</td>
-                    <td>{{$task->description}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div class="add-tasks">
-
-    </div>
+    @foreach(\App\Models\Project::all() as $project)
+        <div class="ms-4 p-2 border-0 border-bottom border-info">
+            <h4>{{$project->title}}</h4>
+            {{$project->description}}
+        </div>
+    @endforeach
+{{--    {{Auth::user()->role}}--}}
+    @can('create',\App\Models\Project::class)
+        <h1>aaaaa</h1>
+    @endcan
 </div>
 
 
-@include('footer')
+{{--@include('footer')--}}
 </body>
 <script src="{{ mix('js/app.js')}}"></script>
 </html>

@@ -26,29 +26,32 @@
 
 </head>
 
+@can('isAdmin',\App\Models\Project::class)
+    @yield('admin-panel')
+@endcan
+
 
 <body>
 
 @yield('header')
 <div>
+    @yield('add')
         <div class="landing-container">
             <div class="landing-text">
                 <div class="landing-text-main">
-                    <h1>Привет Вездекодер</h1>
+                    PW Parsec
                 </div>
                 <div class="landing-text-secondary">
-                    Работы команды Тестовое Название
+                    Project Work Parsec — это платформа для проектов, идей и стартапов,
+                    на которой вы можете найти единомышленников и инициативных ребят в свою команду.
                 </div>
             </div>
             <div class="landing-form">
-                @if(!Auth::check())
-                    <a href="/registration">Регаться</a>
-                    <a href="/login">Войти</a>
-                @else
-                    <h2>Переходить к своим <a href="/main" >задачам</a> </h2>
-                @endif
+                <a href="/registration">Я - Активист</a>
+                <a href="/registration_as_employer">Я - Руководитель</a>
             </div>
         </div>
+        
 </div>
 <div style="
       border-top: 300px solid transparent;
@@ -56,6 +59,26 @@
 ">
 
 </div>
+<div style="background: #1a202c;min-height: 60vh;text-align: center">
+    <div>
+        <img src="/img/1.jpg" width="500px" alt="">
+        <img src="/img/3.jpg" width="500px" alt=""><br>
+        <img src="/img/23.jpg" width="500px" alt="">
+    </div>
+    <div style="background: #2D384D">
+        <div style="text-align: left; color: #e2e8f0; width: 70vw; margin-left: 10vw">
+            <h1>Отзывы</h1>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-around">
+            <div style="background: #1a202c; padding: 10px"><h1 >Отзыв 1 </h1></div>
+            <div style="background: #1a202c; padding: 10px"><h1 >Отзыв 2 </h1></div>
+            <div style="background: #1a202c; padding: 10px"><h1 >Отзыв 3 </h1></div>
+        </div>
+        <br>
+    </div>
+</div>
+
+@yield('footer')
 </body>
 
 <script src="{{ mix('js/app.js')}}" ></script>

@@ -13,10 +13,10 @@ class ProjectController extends Controller
     {
         return Project::create([
             'title' => $data['title'],
-            'organization' => $data['organization'],
+            'employer_id' => $data['employer_id'],
             'director' => $data['director'],
             'description' => $data['description'],
-//            'cover_picture' => time().$data['prof_picture']->getClientOriginalName(),
+            'icon' => time().$data['cover_picture']->getClientOriginalName(),
         ]);
     }
 
@@ -24,19 +24,22 @@ class ProjectController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'organization' => 'required',
-            'description' => 'required',
             'cover_picture' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
+        $user = Auth::user();
         $data = $request->all();
-
+        $data['employer_id'] = $user->aboutEmployer()->get()[0]->id;
         $project = $this->create($data);
 
+
+        if ($request->hasFile('cover_picture')) {
+            $file = $request->file('cover_picture');
+            $filename = $user->prof_picture;
+            $file->storeAs('/', $filename, 'public_profiles');
+        }
         $project->save();
 
-        $user = Auth::user();
-        $project->users()->save($user);
 
 //        dd($project);
 //        dd(Auth::user()->projects()->get()->last());
