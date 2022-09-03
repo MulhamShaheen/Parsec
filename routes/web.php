@@ -39,7 +39,7 @@ Route::get('api/user', [CustomAuthController::class, 'userReturner']);
 
 Route::get('account', function () {
     return view('account');
-});
+})->middleware('auth');
 
 Route::post('updateProfPicture', [CustomAuthController::class, 'updateProfPicture'])->name('update.picture');
 Route::post('updateProfName', [CustomAuthController::class, 'updateProfName'])->name('update.name');
@@ -54,16 +54,19 @@ Route::get('/project/create', function (){
 })->name('create.project.view');
 Route::post('/project/create', [ProjectController::class, 'validateNewProject'])->name('create.project');
 
-Route::get('resume/view/{id}', [ResumesController::class, 'viewResume'])->name('view.resume');
-Route::get('resume/edit/{id}', [ResumesController::class, 'viewEditResume'])->name('edit.resume');
+Route::get('account/resume/edit', [ResumesController::class, 'viewEditResume'])->name('edit.account.resume');;
+Route::post('account/resume/save', [ResumesController::class, 'createResume'])->name('save.account.resume');
+
+//Route::get('resume/view/{id}', [ResumesController::class, 'viewResume'])->name('view.resume');
+//Route::get('resume/edit/{id}', [ResumesController::class, 'viewEditResume'])->name('edit.resume');
 
 Route::get('resume/new', function () {
     return view('employees.resumes.create');
 })->name('new.resume');
 
 
-Route::post('resume/new', [ResumesController::class, 'createResume'])->name('create.resume');
-Route::post('resume/edit/{id}', [ResumesController::class, 'editResume'])->name('edit.resume');
+//Route::post('resume/new', [ResumesController::class, 'createResume'])->name('create.resume');
+//Route::post('resume/edit/{id}', [ResumesController::class, 'editResume'])->name('edit.resume');
 
 Route::get('admin/panel', [AdminController::class, 'index'])->name('admin.panel');
 

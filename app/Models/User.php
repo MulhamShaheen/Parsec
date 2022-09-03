@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
     public function resumes()
     {
-        return $this->hasMany(Resume::class);
+        return $this->hasOne(Resume::class);
     }
     public function tasks()
     {

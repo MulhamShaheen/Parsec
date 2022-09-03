@@ -26,15 +26,23 @@
 </head>
 
 <body>
-
+<?php
+    $user = Auth::user();
+    if ($user->resumes()->exists()) {
+        $resume = $user->resumes()->get()[0];
+    }
+    else{
+        $resume = null;
+    }
+?>
 <div class="position-absolute top-50 start-50 translate-middle">
     <div class="align-items-center reg-form d-flex flex-column justify-content-center">
         <h2>New Resume</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{route("save.account.resume")}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group mb-3">
                 <input type="text" placeholder="Title" id="title" class="form-control" name="title"
-                       required autofocus value="{!! \App\Models\Resume::find($id)->title !!}">
+                       required autofocus value="{!! !is_null($resume)? $resume->title : "" !!}">
                 @if ($errors->has('title'))
                     <span class="text-danger">{{ $errors->first('title') }}</span>
                 @endif
@@ -42,7 +50,7 @@
             <div class="form-group mb-3">
                         <textarea placeholder="Description" id="description" class="form-control"
                                   name="description" autofocus style="height: 200px"
-                                  text=" {!!  \App\Models\Resume::find($id)->description!!}">
+                                  text=" {!! !is_null($resume)? $resume->description : ""!!}">
 
                         </textarea>
                 @if ($errors->has('description'))
@@ -64,9 +72,9 @@
 
     ClassicEditor
         .create(document.querySelector('#description'))
-        .then( editor => {
-            editor.setData('{!! \App\Models\Resume::find($id)->description !!}')
-        } )
+        .then(editor => {
+            editor.setData('{!! !is_null($resume) ? $resume->description : "" !!}')
+        })
         .catch(error => {
             console.error(error);
         });

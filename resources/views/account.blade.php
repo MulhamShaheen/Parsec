@@ -121,7 +121,7 @@ else {
                             могла познакомиться с вами
                         </div>
                         <button class="btn-redirect">
-                            <a href="">Рассказать о себе</a>
+                            <a href="{{route('edit.account.resume')}}">Рассказать о себе</a>
                         </button>
                     </div>
                 </div>

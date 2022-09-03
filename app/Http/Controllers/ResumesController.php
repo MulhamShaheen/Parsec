@@ -21,12 +21,12 @@ class ResumesController extends Controller
         return redirect('account');
     }
 
-    public function viewResume(Request $request, $id){
-        return view('employees.resumes.view',compact('id'));
-    }
+//    public function viewResume(Request $request, $id){
+//        return view('employees.resumes.view',compact('id'));
+//    }
 
-    public function viewEditResume(Request $request, $id){
-        return view('employees.resumes.edit',compact('id'));
+    public function viewEditResume(Request $request){
+        return view('employees.resumes.edit');
     }
 
 
