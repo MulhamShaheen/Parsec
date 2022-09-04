@@ -54,6 +54,8 @@ Route::get('/project/create', function (){
 })->name('create.project.view');
 Route::post('/project/create', [ProjectController::class, 'validateNewProject'])->name('create.project');
 
+Route::get('/project/view/{id}', [ProjectController::class, 'viewProject'])->name('view.project');
+
 Route::get('account/resume/edit', [ResumesController::class, 'viewEditResume'])->name('edit.account.resume');;
 Route::post('account/resume/save', [ResumesController::class, 'createResume'])->name('save.account.resume');
 
