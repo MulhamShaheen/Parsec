@@ -23,6 +23,8 @@ if (!Auth::user()->isEmployer()) {
 
         }
     }
+    if ($user->projects()->exists())
+    $projects = $user->projects()->get()->all();
 }
 else {
 
@@ -134,18 +136,39 @@ else {
         <div class="m-2 ">
             <h3>Участие в проектах</h3>
             <div class="profile-about mt-4">
+
                 <div class="row g-4">
-                    <div class="col-1">
-                        <img src="img/unlock.jpg" alt="" width="100%">
-                    </div>
-                    <div class="col-11">
-                        <h5><a href="">Unlock</a></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto
-                            consectetur cum
-                            doloremque ea exercitationem inventore ipsa ipsam iusto, libero nam natus nisi
-                            odit, perferendis
-                            perspiciatis quibusdam temporibus! Ea, ipsa.</p>
-                    </div>
+                    @if(!empty($projects))
+                        @foreach($projects as $project)
+                            <div class="col-1">
+                                <img src="uploads/projects/{{$project->icon}}" alt="" width="100%">
+                            </div>
+                            <div class="col-11">
+                                <h5><a href="">{{$project->title}}</a></h5>
+                                <p>{{$project->description}}</p>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <div>
+                                <h4>Здесь ничего нет</h4>
+                            </div>
+                            <button class="btn-redirect">
+                                <a href="/main">Добавьте проекты</a>
+                            </button>
+                        </div>
+                    @endif
+{{--                    <div class="col-1">--}}
+{{--                        <img src="img/unlock.jpg" alt="" width="100%">--}}
+{{--                    </div>--}}
+{{--                    <div class="col-11">--}}
+{{--                        <h5><a href="">Unlock</a></h5>--}}
+{{--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto--}}
+{{--                            consectetur cum--}}
+{{--                            doloremque ea exercitationem inventore ipsa ipsam iusto, libero nam natus nisi--}}
+{{--                            odit, perferendis--}}
+{{--                            perspiciatis quibusdam temporibus! Ea, ipsa.</p>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>
