@@ -20,6 +20,10 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function viewProject(Request $request, int $id){
+        return view('projects.view',compact('id'));
+    }
+
     public function validateNewProject(Request $request){
 
         $request->validate([
