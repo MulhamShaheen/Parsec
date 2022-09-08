@@ -67,10 +67,7 @@ class User extends Authenticatable
         }
         return $this->createToken('local_token',$rights)->plainTextToken;
     }
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class,'project_user','user_id', 'project_id');
-    }
+
     public function isAdmin()
     {
         return $this->role == 0;
@@ -87,6 +84,17 @@ class User extends Authenticatable
             return $this->hasOne(Employer::class,'user_id','id');
         }
         return false;
+    }
+
+    public function projects()
+    {
+        if($this->role == 2) {
+            return $this->belongsToMany(Project::class, 'project_user', 'user_id', 'project_id');
+        }
+        else if ($this->role == 1){
+            $employer = $this->aboutEmployer()->get()[0];
+            return $employer->projects();
+        }
     }
 
     public function info(){

@@ -53,6 +53,53 @@
                     <div class="form-group mb-3">
                         <input type="file" name="prof_picture" id="prof_picture" class="form-control">
                     </div>
+                    <h2>Личные данные</h2>
+                    <div class="form-group mb-3">
+                        <input type="text" placeholder="Фамилия" id="surname" class="form-control" name="surname"
+                               required autofocus>
+                        @if ($errors->has('surname'))
+                            <span class="text-danger">{{ $errors->first('surname') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" placeholder="Имя" id="firstname" class="form-control" name="firstname"
+                               required autofocus>
+                        @if ($errors->has('firstname'))
+                            <span class="text-danger">{{ $errors->first('firstname') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" placeholder="Отчество" id="middlename" class="form-control" name="middlename"
+                               autofocus>
+                        @if ($errors->has('middlename'))
+                            <span class="text-danger">{{ $errors->first('middlename') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="date" placeholder="Дата рождения" id="birthdate" class="form-control" name="birthdate"
+                               required autofocus>
+                        @if ($errors->has('birthdate'))
+                            <span class="text-danger">{{ $errors->first('birthdate') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" placeholder="Номер телефона" id="phone" class="form-control" name="phone"
+                               autofocus>
+                        @if ($errors->has('phone'))
+                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <select name="faculty">
+                            @foreach($faculities as $faculty)
+                                <option value="{{$faculty->name}}">{{$faculty->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group mb-3">
                         <div class="checkbox">
                             <label><input type="checkbox" name="remember"> Remember Me</label>

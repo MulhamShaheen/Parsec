@@ -67,7 +67,7 @@ else {
                                 <img src="uploads/projects/{{$project->icon}}" alt="" width="100%">
                             </div>
                             <div class="col-11">
-                                <h5><a href="">{{$project->title}}</a></h5>
+                                <h5><a href="/project/view/{{$project->id}}">{{$project->title}}</a></h5>
                                 <p>{{$project->description}}</p>
                             </div>
                         @endforeach

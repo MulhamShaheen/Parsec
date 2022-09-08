@@ -34,6 +34,9 @@
         <div class="row g-5">
             <div class="col-3">
                 @yield('project-card')
+                @can('update',$project)
+                    @yield('project-edit')
+                @endcan
             </div>
             <div class="col-9">
                 @yield('about')

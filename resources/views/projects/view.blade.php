@@ -60,7 +60,11 @@ $employer = $project->employer()->get()[0]
         </div>
     </div>
 @stop
-
+@section('project-edit')
+    <div class="p-3 mt-4 profile-content">
+        <a href=""><button class="btn-redirect">Редактировать информацию проекта</button></a>
+    </div>
+@stop
 
 {{--@section('footer')--}}
 {{--    @include('footer')--}}

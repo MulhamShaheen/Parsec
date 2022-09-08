@@ -29,14 +29,12 @@
 <div class="main-body">
     @foreach(\App\Models\Project::all() as $project)
         <div class="ms-4 p-2 border-0 border-bottom border-info">
-            <h4>{{$project->title}}</h4>
+            <h4><a href="/project/view/{{$project->id}}">{{$project->title}}</a></h4>
             {{$project->description}}
         </div>
     @endforeach
 {{--    {{Auth::user()->role}}--}}
-    @can('create',\App\Models\Project::class)
-        <h1>aaaaa</h1>
-    @endcan
+
 </div>
 
 

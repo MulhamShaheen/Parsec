@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,8 @@ class CustomAuthController extends Controller
 
     public function registration()
     {
-        return view('auth.register');
+        $faculities = Faculty::all();
+        return view('auth.register',compact('faculities'));
     }
 
     public function registrationEmployer()

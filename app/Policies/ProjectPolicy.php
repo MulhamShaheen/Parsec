@@ -64,7 +64,11 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        //
+        if($user->role == 1){
+            return $user->projects->contains($project);
+        }
+
+        return false;
     }
 
     /**
