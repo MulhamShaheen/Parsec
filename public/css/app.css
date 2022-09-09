@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #2D384D;
     overflow: auto;
     color: #faf4f4;
@@ -6,16 +6,17 @@ body{
     overflow: no-content;
 }
 
-:root{
+:root {
     font-family: 'Roboto Condensed', sans-serif;
 
 }
 
-.reg-form{
+.reg-form {
     padding: 1em;
     border-radius: 7px;
 }
-.footer{
+
+.footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +25,8 @@ body{
     background: #181925;
     width: 100%;
 }
-.footer-main{
+
+.footer-main {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -32,14 +34,17 @@ body{
     font-size: 20px;
     gap: 40px;
 }
-.footer-about{
-    width:600px;
+
+.footer-about {
+    width: 600px;
     overflow: no-display;
 }
-.footer-contact{
+
+.footer-contact {
     width: 100px;
 
 }
+
 .admin-panel {
     display: flex;
     gap: 20px;
@@ -49,7 +54,8 @@ body{
     background: #1a202c;
     min-height: 50px;
 }
-.panel-element{
+
+.panel-element {
     display: flex;
     align-items: center;
     min-width: 100px;
@@ -59,11 +65,12 @@ body{
     border-left: #a0aec0;
     border-right: 7px;
 }
-.admin-panel-image{
+
+.admin-panel-image {
     border-radius: 20px;
 }
 
-.header{
+.header {
     display: grid;
     grid-template-columns: [first] 150px [line2] auto [menu-start] 200px [menu-end] auto [user-start] 40px [user-end];
     gap: 10px;
@@ -76,26 +83,31 @@ body{
 
     min-height: 75px;
 }
-.header-brand{
+
+.header-brand {
     grid-column: first / line2;
     display: flex;
 }
-.header-logo>img{
+
+.header-logo > img {
     width: 75px;
     padding: 5px;
     /*background-color: #a0aec0;*/
 }
-.header-title{
+
+.header-title {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     color: #EBE8ED;
 }
-.header-title>h1{
+
+.header-title > h1 {
     padding: 0;
     vertical-align: center;
 }
-.header-user{
+
+.header-user {
     grid-column: user-start / user-end;
     display: flex;
     gap: 20px;
@@ -103,20 +115,23 @@ body{
     margin-left: 35%;
     align-items: center;
 }
-.header-user>a{
+
+.header-user > a {
     text-decoration: none;
     color: #a0aec0;
 }
-.nav-menu{
+
+.nav-menu {
     grid-column: menu-start / menu-end;
     margin-left: 25%;
-    width: 25% ;
+    width: 25%;
     display: flex;
     justify-content: center;
     flex-direction: row;
     gap: 40px;
 }
-.nav-menu-tabs{
+
+.nav-menu-tabs {
     cursor: pointer;
     display: flex;
     padding: 10px;
@@ -129,7 +144,8 @@ body{
     min-width: 150px;
     color: #ffffff;
 }
-.user-card{
+
+.user-card {
     position: absolute;
     display: flex;
     padding: 10px;
@@ -141,48 +157,57 @@ body{
     background-color: #1E2633;
     border-radius: 7px;
 }
-.main{
+
+.main {
     margin-left: 20vw;
     margin-right: 20vw;
 }
-.account-body{
+
+.account-body {
     margin: 0;
     display: flex;
     justify-content: center;
 }
-.account-main{
+
+.account-main {
     min-height: 500px;
     margin: 10px;
 }
-.profile-card{
+
+.profile-card {
     border-radius: 10px;
     background: #1a202c;
 }
-.profile-content{
+
+.profile-content {
     border-radius: 10px;
     background: #1a202c;
 }
-.profile-content>a{
+
+.profile-content > a {
     text-decoration: none;
-    color:#a0aec0 ;
+    color: #a0aec0;
     opacity: 80%;
 }
-.profile-about{
+
+.profile-about {
     color: #a0aec0;
 }
 
-.prof-picture-pen{
+.prof-picture-pen {
     position: relative;
     left: 75%;
     bottom: 27px;
 }
-.prof-name-pen{
+
+.prof-name-pen {
     position: relative;
     float: right;
     right: 0;
     bottom: 50%;
 }
-.landing-container{
+
+.landing-container {
     margin-top: 10vh;
     margin-left: 5vw;
     margin-right: 5vw;
@@ -190,19 +215,23 @@ body{
     grid-template-columns: [text-start]50%[text-end]50%[form-end];
     padding-bottom: 30vh;
 }
-.landing-text{
+
+.landing-text {
     grid-column: text-start/text-end;
 
 }
-.landing-text-main{
+
+.landing-text-main {
     font-size: 60px;
     line-height: 70px;
     padding-bottom: 70px;
 }
-.landing-text-secondary{
+
+.landing-text-secondary {
     font-size: 28px;
 }
-.landing-form{
+
+.landing-form {
     grid-column: text-end/form-end;
     border-radius: 10px;
     background: #1a202c;
@@ -211,13 +240,15 @@ body{
     justify-content: space-around;
     align-items: center;
 }
-.landing-form>a{
+
+.landing-form > a {
     font-size: 36px;
     color: #a0aec0;
     text-decoration: none;
 
 }
-.resume-create-input{
+
+.resume-create-input {
     background: none;
     border: none;
     outline: none;
@@ -226,7 +257,7 @@ body{
     color: #faf4f4;
 }
 
-.btn-redirect{
+.btn-redirect {
     margin: 15px;
     background: cornflowerblue;
     border-style: none;
@@ -235,11 +266,31 @@ body{
 
     color: #1E2633;
 }
-.btn-redirect>a{
+
+.btn-redirect > a {
     text-decoration: none;
     color: #1E2633;
     font-weight: bold;
 }
+
+.update-body {
+    background: #1a202c;
+    padding: 10px;
+    border-radius: 7px;
+    margin-left: 12vw;
+    margin-right: 12vw;
+    margin-top: 2vh;
+}
+.update-form-group{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+}
+
 /*.container{*/
 /*    margin: 10px;*/
 /*    padding: 10px;*/

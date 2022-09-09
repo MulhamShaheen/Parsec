@@ -46,7 +46,10 @@ return [
             'driver' => 'local',
             'root'   => public_path() . '/uploads/profiles',
         ],
-
+        'public_projects'=>[
+            'driver' => 'local',
+            'root'   => public_path() . '/uploads/projects',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
