@@ -80,7 +80,11 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        //
+        if($user->role == 1){
+            return $user->projects->contains($project);
+        }
+
+        return false;
     }
 
     /**

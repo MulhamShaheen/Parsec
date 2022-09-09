@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'cover_picture' => 'mimes:jpg,jpeg,png|max:2048',
+            'icon' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $user = Auth::user();
@@ -37,10 +37,10 @@ class ProjectController extends Controller
         $project = $this->create($data);
 
 
-        if ($request->hasFile('cover_picture')) {
-            $file = $request->file('cover_picture');
-            $filename = $user->prof_picture;
-            $file->storeAs('/', $filename, 'public_profiles');
+        if ($request->hasFile('icon')) {
+            $file = $request->file('icon');
+            $filename = $data['icon'];
+            $file->storeAs('/', $filename, 'public_projects');
         }
         $project->save();
 
@@ -49,4 +49,44 @@ class ProjectController extends Controller
 //        dd(Auth::user()->projects()->get()->last());
         return redirect('account');
     }
+
+    public function editProject(Request $request, $id){
+        $project = Project::find($id);
+        return view('projects.edit',compact('project'));
+    }
+
+    public function updateProject(Request $request, int $id){
+        $project = Project::find($id);
+        $request->validate([
+            'title' => 'required',
+            'icon' => 'mimes:jpg,jpeg,png|max:2048',
+        ]);
+        $data = $request->all();
+
+        if ($request->hasFile('icon')) {
+            $file = $request->file('icon');
+            $filename = $data['icon'];
+            $file->storeAs('/', $filename, 'public_projects');
+        }
+
+        $project->update($data);
+        $project->save();
+
+        dd($data);
+
+        return redirect(route('view.project', $id));
+    }
+
+    public function deleteProject(Request $request, $id){
+        $project = Project::find($id);
+        return view('projects.delete',compact('project'));
+    }
+
+    public function removeProject(Request $request, $id){
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect('account');
+    }
+
 }

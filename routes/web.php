@@ -50,11 +50,18 @@ Route::get('/main', function () {
 
 
 Route::get('/project/create', function (){
-    return view('employers.create');
+    return view('projects.create');
 })->name('create.project.view');
+
 Route::post('/project/create', [ProjectController::class, 'validateNewProject'])->name('create.project');
 
 Route::get('/project/view/{id}', [ProjectController::class, 'viewProject'])->name('view.project');
+Route::get('/project/edit/{id}', [ProjectController::class, 'editProject'])->name('edit.project');
+Route::get('/project/delete/{id}', [ProjectController::class, 'deleteProject'])->name('delete.project');
+
+
+Route::post('/project/edit/{id}', [ProjectController::class, 'updateProject'])->name('update.project');
+Route::post('/project/delete/{id}', [ProjectController::class, 'removeProject'])->name('remove.project');
 
 Route::get('account/resume/edit', [ResumesController::class, 'viewEditResume'])->name('edit.account.resume');;
 Route::post('account/resume/save', [ResumesController::class, 'createResume'])->name('save.account.resume');

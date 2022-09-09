@@ -37,6 +37,9 @@
                 @can('update',$project)
                     @yield('project-edit')
                 @endcan
+                @can('delete', $project)
+                    @yield('project-delete')
+                @endcan
             </div>
             <div class="col-9">
                 @yield('about')
