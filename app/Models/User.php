@@ -101,4 +101,7 @@ class User extends Authenticatable
         return $this->hasOne(Info::class,'user_id','id');
     }
 
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
 }

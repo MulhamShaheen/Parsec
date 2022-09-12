@@ -29,28 +29,14 @@
 <body>
 @include('header')
 
-<div class="account-body">
-    <div id="profile" class="container-fluid account-main">
-        <div class="row g-5">
-            <div class="col-3">
-                @yield('project-card')
-                @can('update',$project)
-                    @yield('project-edit')
-                @endcan
-                @can('delete', $project)
-                    @yield('project-delete')
-                @endcan
-                @can('reply', $project)
-
-                    @yield('project-reply')
-                @endcan
-            </div>
-            <div class="col-9">
-                @yield('about')
-                @yield('projects')
-                @yield('more')
+<div class="update-body">
+    <div class="container d-flex flex-column align-items-center">
+        <div class="prof-picture d-flex justify-content-center">
+            <div style="display:block; max-height:100px; overflow:hidden;">
+                <img src="/uploads/projects/{{ $project->icon}}" alt="" width="100px" height="100px">
             </div>
         </div>
+        @yield('content')
     </div>
 </div>
 

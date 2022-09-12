@@ -37,9 +37,11 @@ Route::post('customLogin', [CustomAuthController::class, 'customLogin'])->name('
 
 Route::get('api/user', [CustomAuthController::class, 'userReturner']);
 
-Route::get('account', function () {
-    return view('account');
-})->middleware('auth');
+Route::get('account', [CustomAuthController::class, 'accountManager'])->middleware('auth');
+
+//Route::get('account', function () {
+//    return view('account');
+//})->middleware('auth');
 
 Route::post('updateProfPicture', [CustomAuthController::class, 'updateProfPicture'])->name('update.picture');
 Route::post('updateProfName', [CustomAuthController::class, 'updateProfName'])->name('update.name');
@@ -58,10 +60,14 @@ Route::post('/project/create', [ProjectController::class, 'validateNewProject'])
 Route::get('/project/view/{id}', [ProjectController::class, 'viewProject'])->name('view.project');
 Route::get('/project/edit/{id}', [ProjectController::class, 'editProject'])->name('edit.project');
 Route::get('/project/delete/{id}', [ProjectController::class, 'deleteProject'])->name('delete.project');
+Route::get('/project/reply/{id}', [ProjectController::class, 'replyToProject'])->name('reply.project');
 
 
 Route::post('/project/edit/{id}', [ProjectController::class, 'updateProject'])->name('update.project');
 Route::post('/project/delete/{id}', [ProjectController::class, 'removeProject'])->name('remove.project');
+Route::post('/project/reply/{id}', [ProjectController::class, 'saveReplyToProject'])->name('register.to.project');
+
+
 
 Route::get('account/resume/edit', [ResumesController::class, 'viewEditResume'])->name('edit.account.resume');;
 Route::post('account/resume/save', [ResumesController::class, 'createResume'])->name('save.account.resume');

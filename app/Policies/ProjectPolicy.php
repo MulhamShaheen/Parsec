@@ -81,6 +81,7 @@ class ProjectPolicy
     public function delete(User $user, Project $project)
     {
         if($user->role == 1){
+
             return $user->projects->contains($project);
         }
 
@@ -109,5 +110,16 @@ class ProjectPolicy
     public function forceDelete(User $user, Project $project)
     {
         //
+    }
+
+    public function reply(User $user, Project $project)
+    {
+        if($user->role == 2){
+            $replies = $user->replies()->where('project_id', $project->id)->get()->all();
+//            dd($replies);
+            return empty($replies);
+        }
+
+        return false;
     }
 }

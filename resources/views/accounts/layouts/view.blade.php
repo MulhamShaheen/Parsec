@@ -33,17 +33,13 @@
     <div id="profile" class="container-fluid account-main">
         <div class="row g-5">
             <div class="col-3">
-                @yield('project-card')
-                @can('update',$project)
-                    @yield('project-edit')
-                @endcan
-                @can('delete', $project)
-                    @yield('project-delete')
-                @endcan
-                @can('reply', $project)
-
-                    @yield('project-reply')
-                @endcan
+                @yield('profile-card')
+{{--                @can('update',$project)--}}
+{{--                    @yield('project-edit')--}}
+{{--                @endcan--}}
+{{--                @can('delete', $project)--}}
+{{--                    @yield('project-delete')--}}
+{{--                @endcan--}}
             </div>
             <div class="col-9">
                 @yield('about')

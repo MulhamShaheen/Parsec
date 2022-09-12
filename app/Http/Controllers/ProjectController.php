@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reply;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class ProjectController extends Controller
             'employer_id' => $data['employer_id'],
             'director' => $data['director'],
             'description' => $data['description'],
-            'icon' => time().$data['cover_picture']->getClientOriginalName(),
+            'icon' => time().$data['icon']->getClientOriginalName(),
         ]);
     }
 
@@ -72,7 +73,7 @@ class ProjectController extends Controller
         $project->update($data);
         $project->save();
 
-        dd($data);
+//        dd($data);
 
         return redirect(route('view.project', $id));
     }
@@ -89,4 +90,21 @@ class ProjectController extends Controller
         return redirect('account');
     }
 
+    public function replyToProject(Request $request, $id){
+        $project = Project::find($id);
+
+        return view('projects.reply',compact('project'));
+    }
+
+    public function saveReplyToProject(Request $request, $id){
+
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $data['project_id'] = $id;
+
+        $reply = Reply::create($data);
+        $reply->save();
+
+        return redirect('account');
+    }
 }

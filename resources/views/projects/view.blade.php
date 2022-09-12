@@ -62,15 +62,26 @@ $employer = $project->employer()->get()[0]
 @stop
 @section('project-edit')
     <div class="p-3 mt-4 profile-content">
-        <a href="/project/edit/{{$id}}"><button class="btn-redirect">Редактировать информацию проекта</button></a>
+        <a href="/project/edit/{{$id}}">
+            <button class="btn-redirect">Редактировать информацию проекта</button>
+        </a>
     </div>
 @stop
 @section('project-delete')
     <div class="p-3 mt-4 profile-content">
-        <a href="/project/delete/{{$id}}"><button class="btn-redirect">Удалить проекта</button></a>
+        <a href="/project/delete/{{$id}}">
+            <button class="btn-redirect">Удалить проекта</button>
+        </a>
     </div>
 @stop
-
+@section('project-reply')
+    <div class="p-3 mt-4 profile-content">
+        <a href="/project/reply/{{$id}}">
+            <button class="btn-redirect">Откликнуть</button>
+        </a>
+    </div>
+    {{--    @dd(Auth::user()->can('reply', $project))--}}
+@stop
 {{--@section('footer')--}}
 {{--    @include('footer')--}}
 {{--@stop--}}
