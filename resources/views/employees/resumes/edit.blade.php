@@ -27,13 +27,12 @@
 
 <body>
 <?php
-    $user = Auth::user();
-    if ($user->resumes()->exists()) {
-        $resume = $user->resumes()->get()[0];
-    }
-    else{
-        $resume = null;
-    }
+$user = Auth::user();
+if ($user->resumes()->exists()) {
+    $resume = $user->resumes()->get()[0];
+} else {
+    $resume = null;
+}
 ?>
 <div class="position-absolute top-50 start-50 translate-middle">
     <div class="align-items-center reg-form d-flex flex-column justify-content-center">
@@ -47,9 +46,9 @@
                     <span class="text-danger">{{ $errors->first('title') }}</span>
                 @endif
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-3" style="color: #1a202c">
                         <textarea placeholder="Description" id="description" class="form-control"
-                                  name="description" autofocus style="height: 200px"
+                                  name="description" autofocus style="height: 200px; "
                                   text=" {!! !is_null($resume)? $resume->description : ""!!}">
 
                         </textarea>

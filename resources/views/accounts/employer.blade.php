@@ -1,30 +1,52 @@
-<div class="col-9">
+@extends('accounts.layouts.view')
+
+@section('profile-card')
+    <profile-card></profile-card>
+@stop
+@section('about')
     <div class="p-3 profile-content">
         <div>
-            <div class="m-2 border-bottom border-primary">
-                <h1>Projects</h1>
-            </div>
-            @if(Auth::user()->projects()->exists())
-                @foreach($projects = Auth::user()->projects()->get() as $project)
-                    <div class="ms-4 p-2 border-0 border-bottom border-info">
-                        <h4>{{$project->title}}</h4>
-                        {{$project->description}}
-                    </div>
-                @endforeach
-            @else
-                <div>
-                    <h3>
-                        You don't have any projeccts
-                    </h3>
+            <div class="m-2 ">
+                <h3>О нас</h3>
+                <div class="profile-about">
+                    {!! $employer->description !!}
                 </div>
-            @endif
-            <div class="m-4 d-flex justify-content-center">
-                @can('create',\App\Models\Project::class)
-                    <a href="/create">
-                        <button>Add project +</button>
-                    </a>
-                @endcan
             </div>
         </div>
     </div>
-</div>
+@stop
+
+@section('projects')
+    <div class="p-3 mt-4 profile-content position-relative">
+        <div class="m-2 ">
+            <div class="profile-content position-absolute top-0 end-0 mt-4 m-4">
+                <a href="{{route('create.project.view')}}">Добавить проект </a>
+            </div>
+            <h3>Наши проекты</h3>
+            <div class="profile-about mt-4">
+                <div class="row g-4">
+                    @if(!empty($projects))
+                        @foreach($projects as $project)
+                            <div class="col-1">
+                                <img src="uploads/projects/{{$project->icon}}" alt="" width="100%">
+                            </div>
+                            <div class="col-11">
+                                <h5><a href="/project/view/{{$project->id}}">{{$project->title}}</a></h5>
+                                <p>{{$project->description}}</p>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <div>
+                                <h4>Здесь ничего нет</h4>
+                            </div>
+                            <button class="btn-redirect">
+                                <a href="/project/create">Добавьте проекты</a>
+                            </button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+@stop

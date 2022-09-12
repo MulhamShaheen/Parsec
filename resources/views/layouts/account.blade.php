@@ -34,6 +34,9 @@
         <div class="row g-5">
             <div class="col-3">
                 @yield('profile-card')
+                @can('edit',$employer)
+
+                @endcan
             </div>
             <div class="col-9">
                 @yield('about')
@@ -45,7 +48,7 @@
 </div>
 
 
-@include('footer')
+{{--@include('footer')--}}
 </body>
 <script src="{{ mix('js/app.js')}}"></script>
 </html>

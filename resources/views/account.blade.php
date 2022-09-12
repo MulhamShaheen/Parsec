@@ -28,8 +28,8 @@ if (!Auth::user()->isEmployer()) {
 }
 else {
 
-    $organization = $user->aboutEmployer()->get()[0];
-    $projects = $organization->projects()->get()->all();
+    $employer = $user->aboutEmployer()->get()[0];
+    $projects = $employer->projects()->get()->all();
 
 }
 
@@ -45,7 +45,7 @@ else {
             <div class="m-2 ">
                 <h3>О нас</h3>
                 <div class="profile-about">
-                    {!! $organization->description !!}
+                    {!! $employer->description !!}
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@ class AddMajorIdToInfos extends Migration
     public function up()
     {
         Schema::table('infos', function (Blueprint $table) {
-            $table->integer('major_id');
+            $table->integer('major_id')->nullable();;
         });
     }
 

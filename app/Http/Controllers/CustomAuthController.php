@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
+use App\Models\Info;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,7 @@ class CustomAuthController extends Controller
     public function registration()
     {
         $faculities = Faculty::all();
-        return view('auth.register',compact('faculities'));
+        return view('auth.register', compact('faculities'));
     }
 
     public function registrationEmployer()
@@ -54,7 +55,12 @@ class CustomAuthController extends Controller
             $filename = $user->prof_picture;
             $file->storeAs('/', $filename, 'public_profiles');
         }
+        $data['gender'] = true;
+        $data['user_id'] = $user->id;
+        $info = Info::create($data);
+        $info->save();
 
+        dd($request);
         return ($this->customLogin($request));
 
     }
@@ -135,7 +141,38 @@ class CustomAuthController extends Controller
         }
     }
 
+    public function accountManager(Request $request)
+    {
+        $user = Auth::user();
+        if ($user->isEmployer()) {
+            $employer = $user->aboutEmployer()->get()[0];
+            $projects = $user->projects()->get()->all();
+            return view('accounts.employer', compact('user', 'employer', 'projects'));
+        }
 
+        $info = $user->info()->get()[0];
+        $major= null;
+        $faculty = null;
+        $resume = null;
+        $projects = [];
+
+        if ($user->resumes()->exists()) {
+            $resume = $user->resumes()->orderBy('created_at', 'DESC')->get()[0];
+        }
+
+        if ($info->major()->exists()) {
+            $major = $info->major()->get()[0];
+        }
+
+        if ($info->faculty()->exists()) {
+            $faculty = $info->faculty()->get()[0];
+        }
+
+        if ($user->projects()->exists())
+            $projects = $user->projects()->get()->all();
+
+        return view('accounts.activist', compact('user', 'info', 'major', 'faculty', 'projects', 'resume'));
+    }
 
     public function updateProfPicture(Request $request)
     {
