@@ -46,4 +46,7 @@ class Project extends Model
         return $this->belongsTo(Employer::class);
     }
 
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
 }

@@ -22,7 +22,18 @@ class ProjectController extends Controller
     }
 
     public function viewProject(Request $request, int $id){
-        return view('projects.view',compact('id'));
+        $user = Auth::user();
+        $data = [];
+
+        $project = \App\Models\Project::find($id);
+        $employer = $project->employer()->get()[0];
+
+        $data['project'] = $project;
+        $data['employer'] = $employer;
+        if($user->isEmployer()){
+            $data['replies'] = $project->replies()->get();
+        }
+        return view('projects.view',compact('id','data'));
     }
 
     public function validateNewProject(Request $request){

@@ -34,6 +34,7 @@
         <div class="row g-5">
             <div class="col-3">
                 @yield('profile-card')
+
                 @can('edit',$employer)
 
                 @endcan

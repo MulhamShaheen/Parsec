@@ -3,20 +3,20 @@
 @section('profile-card')
     <profile-card></profile-card>
     <div class="p-3 mt-4 profile-content">
-        Возраст: {{$info->getUserAge()}} <br>
-        Регистрация: {{$user->created_at->toDateString()}}<br>
-        Телефон: {{$info->phone}} <b>make double</b><br>
+        Возраст: {{$data['info']->getUserAge()}} <br>
+        Регистрация: {{$data['info']->created_at->toDateString()}}<br>
+        Телефон: {{$data['info']->phone}} <b>make double</b><br>
     </div>
 
 @stop
 @section('about')
-    @if(!empty($resume))
+    @if(isset($data['resume']))
         <div class="p-3 profile-content">
             <div>
                 <div class="m-2 ">
                     <h3>Обо мне</h3>
                     <div class="profile-about">
-                        {!! $resume->description !!}
+                        {!! $data['resume']->description !!}
                     </div>
                 </div>
             </div>
@@ -50,8 +50,8 @@
             <div class="profile-about mt-4">
 
                 <div class="row g-4">
-                    @if(!empty($projects))
-                        @foreach($projects as $project)
+                    @if(isset($data['projects']))
+                        @foreach($data['projects'] as $project)
                             <div class="col-1">
                                 <img src="uploads/projects/{{$project->icon}}" alt="" width="100%">
                             </div>
@@ -79,19 +79,19 @@
     <div class="p-3 mt-4 profile-content">
         <div class="m-2 ">
             <h3>Образование</h3>
-            @if(!empty($faculty))
+            @if(isset($data['faculty']))
             @else
             @endif
             <div class="profile-about mt-4">
                 <div class="row g-4">
-                    @if(!empty($faculty))
+                    @if(isset($data['faculty']))
                         <div class="col-1">
-                            <img src="/uploads/faculties/{{$info->faculty()->get()[0]->icon}}" alt="" width="100%">
+                            <img src="/uploads/faculties/{{$data['faculty']->icon}}" alt="" width="100%">
                         </div>
                         <div class="col-11">
-                            <h5>{{$info->faculty()->get()[0]->name}}</h5>
-                            @if(!empty($major))
-                                <h6>{{$info->major()->get()[0]->title}}</h6>
+                            <h5>{{$data['faculty']->name}}</h5>
+                            @if(isset($data['major']))
+                                <h6>{{$data['major']->title}}</h6>
                             @else
                                 <p>Нет специалности</p>
                             @endif
@@ -110,4 +110,22 @@
             </div>
         </div>
     </div>
+@stop
+@section('my-replies')
+    @if(isset($data['replies']))
+        <div class="p-3 mt-4 profile-content">
+            @foreach($data['replies'] as $reply)
+                <?php
+                    $project = $reply->project()->get()[0];
+                ?>
+                <a href="/project/view/{{$project->id}}">
+                    <h4>{{$project->title}}</h4>
+                    <p>{{$reply->message}}</p>
+                    <p>{{$reply->status}}</p>
+
+                </a>
+            @endforeach
+        </div>
+
+    @endif
 @stop

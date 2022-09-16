@@ -41,7 +41,6 @@
                     @yield('project-delete')
                 @endcan
                 @can('reply', $project)
-
                     @yield('project-reply')
                 @endcan
             </div>
@@ -49,6 +48,9 @@
                 @yield('about')
                 @yield('projects')
                 @yield('more')
+                @can('update', $project)
+                    @yield('project-view-replies')
+                @endcan
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ResumesController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,8 @@ Route::get('resume/new', function () {
     return view('employees.resumes.create');
 })->name('new.resume');
 
+Route::get('/reply/{id}/accept', [ReplyController::class, 'acceptReply'])->name('accept.reply');
+Route::get('/reply/decline', [ReplyController::class, 'declineReply'])->name('decline.reply');
 
 //Route::post('resume/new', [ResumesController::class, 'createResume'])->name('create.resume');
 //Route::post('resume/edit/{id}', [ResumesController::class, 'editResume'])->name('edit.resume');

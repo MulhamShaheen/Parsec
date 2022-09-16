@@ -151,11 +151,11 @@ class CustomAuthController extends Controller
         }
 
         $info = $user->info()->get()[0];
-        $major= null;
+        $major = null;
         $faculty = null;
         $resume = null;
         $projects = [];
-
+        $data = [];
         if ($user->resumes()->exists()) {
             $resume = $user->resumes()->orderBy('created_at', 'DESC')->get()[0];
         }
@@ -171,7 +171,17 @@ class CustomAuthController extends Controller
         if ($user->projects()->exists())
             $projects = $user->projects()->get()->all();
 
-        return view('accounts.activist', compact('user', 'info', 'major', 'faculty', 'projects', 'resume'));
+        if ($user->replies()->exists())
+            $data['replies'] = $user->replies()->get();
+
+        $data['info'] = $info;
+        $data['major'] = $major;
+        $data['faculty'] = $faculty;
+        $data['resume'] = $resume;
+        $data['projects'] = $projects;
+
+
+        return view('accounts.activist', compact('user', 'data',));
     }
 
     public function updateProfPicture(Request $request)
